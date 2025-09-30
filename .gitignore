@@ -129,8 +129,8 @@ yarn-error.log*
 .turbo/
 
 # Docker
-.docker
-.docker-compose.yml
+docker
+docker-compose.yml
 Dockerfile
 
 FRONTEND_API_GUIDE.md
