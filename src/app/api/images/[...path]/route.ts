@@ -6,7 +6,10 @@ export async function GET(
 ) {
   try {
     const imagePath = params.path.join('/');
-    const backendUrl = process.env.INTERNAL_API_URL?.replace('/api', '') || 'http://backend';
+    const isProduction = process.env.NEXT_PUBLIC_ENV === 'production';
+    const backendUrl = isProduction
+      ? process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')
+      : process.env.INTERNAL_API_URL?.replace('/api', '') || 'http://backend';
     const imageUrl = `${backendUrl}/storage/${imagePath}`;
 
     // Extract query parameters (expires, signature, etc.) from the original request

@@ -22,14 +22,22 @@ export interface Menu {
   updated_at: string;
 }
 
-// Use internal URL for server-side requests, public URL for client-side
+// Use Vercel's public URL in production, and Docker's internal URL in local development.
 const getApiUrl = () => {
-  // Check if we're on the server side
+  const isProduction = process.env.NEXT_PUBLIC_ENV === 'production';
+
+  // When on Vercel, always use the public URL for server-side and client-side.
+  if (isProduction) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+
+  // When local, distinguish between server-side (in Docker) and client-side (in browser).
   if (typeof window === 'undefined') {
-    // Server-side should use the internal Docker service name
+    // Server-side (local Docker container)
     return process.env.INTERNAL_API_URL || 'http://backend/api';
   }
-  // Client-side should use the public URL
+
+  // Client-side (local browser)
   return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 }
 
