@@ -260,9 +260,9 @@ export const contentApi = {
 
   // Categories
   categories: {
-    getAll: async () => {
+    getAll: async (): Promise<Category[]> => {
       const response = await publicApi.get('/content/categories')
-      return response.data
+      return response.data.data || response.data || [];
     },
     getBySlug: async (slug: string) => {
       const response = await publicApi.get(`/content/categories/${slug}`)
@@ -272,9 +272,9 @@ export const contentApi = {
 
   // Tags
   tags: {
-    getAll: async () => {
+    getAll: async (): Promise<Tag[]> => {
       const response = await publicApi.get('/content/tags')
-      return response.data
+      return response.data.data || response.data || [];
     },
     getBySlug: async (slug: string) => {
       const response = await publicApi.get(`/content/tags/${slug}`)
