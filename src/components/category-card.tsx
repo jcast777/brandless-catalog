@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Category } from '../types/category';
@@ -12,10 +13,11 @@ export function CategoryCard({ category }: CategoryCardProps) {
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <div className="relative aspect-video overflow-hidden">
         {category.image ? (
-          <img
+          <Image
             src={category.image}
             alt={category.name}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">

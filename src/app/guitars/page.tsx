@@ -19,21 +19,21 @@ export default function GuitarsPage() {
   });
 
   useEffect(() => {
+    const fetchGuitars = async () => {
+      setLoading(true);
+      try {
+        const response = await guitarApi.getGuitars(filters);
+        setGuitars(response.data);
+        setPagination(response);
+      } catch (error) {
+        console.error('Error fetching guitars:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchGuitars();
   }, [filters]);
-
-  const fetchGuitars = async () => {
-    setLoading(true);
-    try {
-      const response = await guitarApi.getGuitars(filters);
-      setGuitars(response.data);
-      setPagination(response);
-    } catch (error) {
-      console.error('Error fetching guitars:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleFiltersChange = (newFilters: GuitarFilters) => {
     setFilters(newFilters);

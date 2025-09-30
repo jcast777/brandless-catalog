@@ -18,7 +18,7 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
       <div className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight">Featured Posts</h2>
         <p className="text-muted-foreground mt-2">
-          Don't miss these highlighted articles
+          Don&apos;t miss these highlighted articles
         </p>
       </div>
 

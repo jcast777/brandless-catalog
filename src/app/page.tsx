@@ -40,7 +40,7 @@ export default async function HomePage() {
               Discover Your Perfect Guitar
             </h1>
             <p className="text-xl mb-8 text-blue-100">
-              Explore our curated collection of premium guitars from the world's finest brands. 
+              Explore our curated collection of premium guitars from the world&apos;s finest brands. 
               From vintage classics to modern masterpieces.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

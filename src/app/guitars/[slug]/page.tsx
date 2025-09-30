@@ -18,23 +18,23 @@ export default function GuitarDetailPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const fetchGuitar = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await guitarApi.getGuitar(slug);
+        setGuitar(response);
+      } catch (err: any) {
+        setError(err.response?.status === 404 ? 'Guitar not found' : 'Error loading guitar');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (slug) {
       fetchGuitar();
     }
   }, [slug]);
-
-  const fetchGuitar = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await guitarApi.getGuitar(slug);
-      setGuitar(response);
-    } catch (err: any) {
-      setError(err.response?.status === 404 ? 'Guitar not found' : 'Error loading guitar');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   if (loading) {
     return (
