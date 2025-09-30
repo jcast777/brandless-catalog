@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { Guitar, GuitarFilters, PaginatedResponse } from '@/types/guitar'
-import { Category } from '@/types/category'
+import { Guitar, Category, Tag, GuitarFilters, PaginatedResponse } from '@/types/guitar'
 
 export interface MenuItemType {
   id: number;
@@ -173,13 +172,13 @@ export const guitarApi = {
   // Get guitar categories
   getCategories: async (): Promise<Category[]> => {
     const response = await publicApi.get('/content/categories')
-    return response.data.data || [];
+    return response.data.data || response.data || [];
   },
 
   // Get guitar tags
-  getTags: async () => {
+  getTags: async (): Promise<Tag[]> => {
     const response = await publicApi.get('/content/tags')
-    return response.data
+    return response.data.data || response.data || [];
   },
 
   // Search guitars

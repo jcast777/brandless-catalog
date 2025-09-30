@@ -25,9 +25,9 @@ export function GuitarFilters({ filters, onFiltersChange, onClearFilters }: Guit
           guitarApi.getTags()
         ]);
         
-        // Check if the response is an object with a data property
-        const categoriesData = categoriesResponse?.data || categoriesResponse || [];
-        const tagsData = tagsResponse?.data || tagsResponse || [];
+        // The API functions now return the data directly
+        const categoriesData = categoriesResponse || [];
+        const tagsData = tagsResponse || [];
         
         // Ensure we always set an array
         setCategories(Array.isArray(categoriesData) ? categoriesData : []);
